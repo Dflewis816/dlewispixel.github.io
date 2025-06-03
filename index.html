@@ -50,6 +50,7 @@
             // Get the values from the form
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
 
             if (!name || !email) {
                 alert('Please enter both your name and email.');
@@ -64,7 +65,35 @@
                 content_type: 'product',
                 value: 50.00,
                 currency: 'USD',
-                user_name: name
+                user_name: name,
+                email: email,
+                phone: phone
+            });
+        });
+
+        document.getElementById('addToWishlistButton').addEventListener('click', function() {
+            // Get the values from the form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+
+            if (!name || !email) {
+                alert('Please enter both your name and email.');
+                return;
+            }
+
+            // Trigger Facebook Pixel AddToCart event with user data
+            fbq('track', 'AddToWishlist', {
+                content_name: 'Test Product',
+                content_category: 'Example Category',
+                content_ids: ['1234'],
+                content_type: 'product',
+                value: 50.00,
+                currency: 'USD',
+                user_name: name,
+                email: email,
+                phone: phone
             });
         });
     </script>
